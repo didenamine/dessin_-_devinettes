@@ -1,4 +1,4 @@
-# Skkribl clone  :
+# Jeu multijoueur de dessin et de devinettes (skkribl theme) :
 
 creating a game that looks like the online skkribl version but
 with the use of python libraries such as socket , threads 
