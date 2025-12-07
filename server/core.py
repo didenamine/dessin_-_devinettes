@@ -6,7 +6,7 @@ import sys
 import os
 
 # Add parent directory to path to import config
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # Add the project's root directory to the Python path to enable importing modules like 'config' from a higher level.
 import config
 import protocol
 
@@ -139,10 +139,12 @@ class ServerCore:
         threading.Thread(target=self._transition_to_next_round, daemon=True).start()
 
     def _transition_to_next_round(self):
+        #4 seconds delay before starting new round
         time.sleep(4)
         self.start_new_round()
 
     def start_new_round(self):
+        #checks if there are any clients (players)
         if not self.clients: return
         
         # Check Round Progress
@@ -207,7 +209,7 @@ class ServerCore:
             if not self.running or not self.round_active or self.round_id != round_id:
                 return
             
-            # Hint Logic: Reveal a letter every 5 seconds
+            # Hint Logic: Reveal a letter every 5 seconds ////"""""" FOR NOW ""
             elapsed = config.ROUND_TIME - i
             if elapsed > 0 and elapsed % 5 == 0:
                 num_to_reveal = elapsed // 5
@@ -267,10 +269,10 @@ class ServerCore:
                         # 2. Check if it's a correct guess
                         if self.round_active and content.strip().lower() == self.current_word.lower():
                             if client not in self.correct_guesses:
-                                # Calculate Points
-                                # Base 300, minus 50 for each person who already guessed. Min 50.
+                                # POINTS ....
+                                # starting with 300 points for the first solver , and then getting reduces by 50 for each solver.
                                 rank = len(self.correct_guesses)
-                                points = max(300 - (rank * 50), 50)
+                                points = max(300 -(rank *50),50)
                                 
                                 self.scores[client] += points
                                 self.scores[self.drawer_socket] += 50 # Bonus for drawer
@@ -279,7 +281,7 @@ class ServerCore:
                                 self.broadcast(protocol.make_msg("CHAT", f"Server: {name} GUESSED THE WORD! (+{points} pts)"))
                                 self.log(f"{name} guessed the word!")
                                 
-                                # Check if everyone (except drawer) has guessed
+                                # Check if everyone guessd ofc except the current drawer
                                 num_guessers = len(self.clients) - 1
                                 if num_guessers > 0 and len(self.correct_guesses) >= num_guessers:
                                     self.end_round("Server: Everyone guessed correctly!")

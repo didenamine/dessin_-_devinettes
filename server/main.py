@@ -94,7 +94,7 @@ class SkkriblServerGUI:
         except ValueError:
             messagebox.showerror("Error", "Invalid Input")
             return
-
+        #disabling the server controls when the game starts ... 
         if self.core.start(port, players, rounds):
             self.start_btn.config(state=tk.DISABLED)
             self.stop_btn.config(state=tk.NORMAL)
