@@ -28,7 +28,7 @@ class GameClient:
         except Exception as e:
             print(f"Connection error: {e}")
             return False
-"""function to send messages to the server"""
+    """function to send messages to the server"""
     def send(self, msg_string):
         if self.client_socket:
             try:
