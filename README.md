@@ -1,16 +1,133 @@
-# Skkribl clone  :
+# Skribbl Clone  
 
-creating a game that looks like the online skkribl version but
-with the use of python libraries such as socket , threads 
-where the players "clients" get invited from the server 
-and then each one of them get a turn to use the white board (to draw)
-the rest have the ability to check on what's the current player is drawing and try to take a guess
-if the player guess the drawn world successfully he get points 
-in the end whom who have the most points win , 
+A **multiplayer drawing and guessing game** inspired by **Skribbl.io**, built using **Python**, **Tkinter**, **Sockets**, and **Threading** as part of a university course.
 
-## how to run the game 
+The project demonstrates real-time client-server communication, synchronization, and parallel execution using threads.
 
-1. run the server 
-2. run the clients 
-3. invite your friends 
-4. start the game 
+---
+
+##  Project Overview
+
+This application follows a **client-server architecture**:
+
+* A **server interface** allows the host to configure:
+
+  * Server port
+  * Number of players
+  * Number of rounds
+
+* A **client interface** allows players to:
+
+  * Draw words
+  * Guess drawings in real time
+  * Chat with other players
+
+The server manages game logic, timing, synchronization, and scoring, while clients handle user interaction and rendering.
+
+---
+
+##  Game Rules
+
+* The game is played in **multiple rounds**
+* In each round:
+
+  * Every player gets **one turn to draw**
+  * Each drawing turn lasts **20 seconds** (can be configured)
+  * The drawer receives a **random word**
+
+###  Guessing Mechanics
+
+* Other players try to guess the word using a **shared chat**
+* Every **5 seconds**, a new letter of the word is revealed to the guessers
+* Guessing behavior:
+
+  *  Wrong guess → visible to all players
+  *  Correct guess → confirmed privately (word remains hidden from others)
+
+---
+
+##  Scoring System
+
+* **Guessers**:
+
+  * 1st correct guess → **300 points** (can be configured)
+  * Subsequent correct guesses receive fewer points
+
+* **Drawer**:
+
+  * Receives **50 points per correct guesser**
+
+* At the end of the game, the server displays a **final scoreboard**
+
+---
+
+##  Technical Details
+
+###  Technologies & Libraries
+
+* **Python 3**
+* **Tkinter** – GUI
+* **socket** – Network communication
+* **threading** – Parallel execution
+
+###  Parallelism & Networking
+
+* Each **client runs in its own thread**
+
+* The **server handles multiple clients concurrently**
+
+* Threads are used for:
+
+  * Game timing synchronization
+  * Managing drawing turns
+  * Coordinating round progression
+
+
+---
+
+##  Application Interfaces
+
+### Server Interface
+
+* Configure game settings
+* Start and manage the game session
+* Display final scoreboard
+
+### Client Interface
+
+* Drawing canvas
+* Chat window for guesses
+* Real-time updates from the server
+
+---
+
+##  How to Run
+
+### 1️⃣ Start the Server
+
+```bash
+cd skkribl/server python main.py
+```
+
+* Choose the port, number of players, and rounds
+
+### 2️⃣ Start Clients
+
+```bash
+cd skkribl/client python main.py
+```
+* for each client login through a different terminal
+* Join the game
+* when all the clients (players) that re mentioned in the server interface enter the game starts
+---
+
+##  Future Improvements
+
+* Player authentication
+* Lobby system
+* Better drawing tools
+* Word categories and difficulty levels
+* Persistence of scores
+
+
+Feel free to fork, experiment, and improve the project!
