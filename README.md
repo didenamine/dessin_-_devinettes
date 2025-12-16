@@ -104,7 +104,7 @@ The server manages game logic, timing, synchronization, and scoring, while clien
 ##  How to Run
 
 ### 1️⃣ Start the Server
-#### ** if using linux ** : 
+#### **if using linux** : 
 * make a venv
   ```bash
    python3 -m venv myvenv
@@ -115,12 +115,12 @@ The server manages game logic, timing, synchronization, and scoring, while clien
   ```bash
   cd server && python3 main.py
   ```
-  **For the client ** :
+  **For the client** :
   ```bash
   cd client && python3 main.py
   ```
 
-#### ** others os ** :
+#### **others os** :
   
 ```bash
 pip install -r requirements.txt
