@@ -1,4 +1,5 @@
-# Skribbl Clone  
+# Jeu multijoueur de
+dessin et de devinettes
 
 A **multiplayer drawing and guessing game** inspired by **Skribbl.io**, built using **Python**, **Tkinter**, **Sockets**, and **Threading** as part of a university course.
 
